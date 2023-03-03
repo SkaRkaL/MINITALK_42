@@ -6,11 +6,11 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:16:36 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/02/27 16:16:38 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:08:36 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ha.h"
+#include "minitalk.h"
 
 void	ft_putchar_fd(char c, int fd)
 {
@@ -47,7 +47,7 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int	i;
 	int	signe;

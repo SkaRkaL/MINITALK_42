@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/03 00:42:11 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/03/03 05:56:38 by sakarkal         ###   ########.fr       */
+/*   Created: 2023/02/27 16:16:42 by sakarkal          #+#    #+#             */
+/*   Updated: 2023/03/03 05:58:41 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+static void	succeeded(int signal)
+{
+	if (signal == SIGUSR1)
+	{
+		ft_putstr_fd("\e[35m⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎\e[0m\n", 1);
+		ft_putstr_fd("\e[35m⚡︎\e[0m\e[1;34m    Server received message ✅\e[0m\
+      \e[35m⚡︎\e[0m\n", 1);
+		ft_putstr_fd("\e[35m⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎⚡︎\e[0m\n", 1);
+	}
+	exit (0);
+}
 
 static void	ft_bit_sender(int pid, char chara)
 {
@@ -40,35 +52,36 @@ static void	ft_bit_sender(int pid, char chara)
 	}
 }
 
-void	ft_send_message(int pid, char *msg)
+static void	ft_send_str(int pid, char input[])
 {
 	int	i;
 
 	i = 0;
-	while (msg[i])
+	while (input[i] != '\0')
 	{
-		ft_bit_sender(pid, msg[i]);
+		ft_bit_sender(pid, input[i]);
 		i++;
 	}
 	ft_bit_sender(pid, '\n');
 	ft_bit_sender(pid, '\0');
 }
 
-int	main(int ac, char **av)
+int	main(int argc, char **argv)
 {
 	int	pid;
-	int	i;
 
-	i = 0;
-	if (ac == 3 && av[2][0] != '\0')
+	if (argc == 3 && argv[2][0] != '\0')
 	{
-		pid = ft_atoi(av[1]);
+		pid = ft_atoi(argv[1]);
 		if (pid <= 0)
 		{
 			ft_putstr_fd("\e[033;0;31m ⚡︎⚡︎ ❌ Ops, Error PID ❌ ⚡︎⚡︎\e[0m\n", 2);
 			return (0);
 		}
-		ft_send_message(pid, av[2]);
+		signal(SIGUSR1, succeeded);
+		ft_send_str(pid, argv[2]);
+		while (1)
+			pause();
 	}
 	else
 	{
