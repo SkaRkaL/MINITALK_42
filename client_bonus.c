@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:16:42 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/03/12 20:08:53 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/03/12 20:14:57 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int	main(int argc, char **argv)
 	if (argc == 3 && argv[2][0] != '\0')
 	{
 		pid = ft_atoi(argv[1]);
-		for (int j = 0; argv[1][j]; j++)
+		for (int a = 0; argv[1][a]; a++)
 		{
-			if (!isdigit(argv[1][j])){
+			if (!isdigit(argv[1][a])){
 				return(write(2,"\e[033;0;31m	⚡︎   ❌ Error PID ❌	⚡\e[0m\n", 48));
 			}
 		}
