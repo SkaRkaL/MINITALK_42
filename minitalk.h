@@ -6,7 +6,7 @@
 /*   By: sakarkal <sakarkal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 16:16:54 by sakarkal          #+#    #+#             */
-/*   Updated: 2023/03/03 00:38:55 by sakarkal         ###   ########.fr       */
+/*   Updated: 2023/03/12 20:08:33 by sakarkal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <ctype.h>
 # include <signal.h>
 # include <sys/types.h>
 
